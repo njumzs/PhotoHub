@@ -236,9 +236,12 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
-    <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
+    <script src="./LIB/jquery.min.js"></script>
+    <!--  https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js -->
+    <script src="./LIB/bootstrap.min.js"></script>
+    <!--  http://getbootstrap.com/dist/js/bootstrap.min.js -->
+    <script src="./LIB/docs.min.js"></script>
+    <!--  http://getbootstrap.com/assets/js/docs.min.js -->
 
   </body>
 </html>
