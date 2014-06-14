@@ -43,7 +43,7 @@
 
   </head>
 
-  <body style="">
+  <body class="body-custom">
   
     <nav class="navbar navbar-inverse navbar-custom" role="navigation">
       <div class="container-fluid">

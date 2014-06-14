@@ -5,14 +5,14 @@
 <%  useremail = request.getParameter("signinEmail");
 	String password = request.getParameter("signinPassword");
 	System.out.println("sign in " + useremail + " " + password);
-	if ( TableUser.signIn(useremail, password) == false ) {
+	if ( (userid = TableUser.signIn(useremail, password)) < 0 ) {
 		System.out.println("sign in failed");
 		response.sendRedirect(request.getContextPath() + "/index.jsp");
 		return;
 	}
-	System.out.println("sign in successfully");
+	System.out.println("User : " + useremail + " (id : " + userid + ") sign in successfully");
 	
-	session.setAttribute("userId", userid);
+	session.setAttribute("userId", (new Integer(userid)).toString);
 	session.setAttribute("userEmail", useremail);
 	if (session.getAttribute("userEmail") == null || session.getAttribute("userEmail").toString().equals("")) {
 		response.sendRedirect(request.getContextPath() + "/index.jsp");

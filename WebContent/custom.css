@@ -7,5 +7,9 @@
 .body-custom {
     background-image: url(IMAGE/bg-blackdesk.jpg);
     background-attachment: fixed;
-    background-repeat: repeat;
+    background-repeat:;
+}
+
+.thumbnail {
+    filter:blur(.50);
 }

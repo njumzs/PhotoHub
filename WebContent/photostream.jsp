@@ -1,6 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@
+    page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%! String useremail = null; %>
+<%!
+    int userid = -1;
+    String useremail = null; %>
 <% useremail = (String)session.getAttribute("userEmail");
    if (useremail == null || useremail.equals("") ) {
    		response.sendRedirect(request.getContextPath() + "/index.jsp");
@@ -28,7 +31,7 @@
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Documentation extras -->
-    <link href="http://getbootstrap.com/assets/css/docs;.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
     <!--[if lt IE 9]><script src="../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
     <link href="http://libs.baidu.com/fontawesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
@@ -43,9 +46,9 @@
 
   </head>
 
-  <body>
+  <body class="body-custom">
   
-    <nav class="navbar navbar-inverse" role="navigation">
+    <nav class="navbar navbar-inverse navbar-custom" role="navigation">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -158,24 +161,15 @@
               <h4 class="modal-title">上传你的图片</h4>
             </div>
             <div class="modal-body">
-              <form role="form">
+              <form role="form" method="get" action="upload.jsp">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">上传图片名称</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="输入图片名称">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">添加评论</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="给图片添加一个评论">
+                  <label for="input">添加评论</label>
+                  <input type="text" class="form-control" name="inputIntroduction" placeholder="给图片添加一个评论">
                   <p class="help-block">评论小于140字</p>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputFile">打开图片</label>
-                  <input type="file" id="exampleInputFile">
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">提示好友
-                  </label>
+                  <input type="file" name="inputFile">
                 </div>
                 <button type="submit" class="btn btn-default">确定</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
