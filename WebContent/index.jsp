@@ -18,14 +18,20 @@
     <title>Welcome</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="LIB/bootstrap.min.css" rel="stylesheet">
+    <!-- http://getbootstrap.com/dist/css/bootstrap.min.css -->
 
     <!-- Documentation extras -->
-    <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
+    <link href="LIB/docs.min.css" rel="stylesheet">
+      <!-- http://getbootstrap.com/assets/css/docs.min.css -->
     <!--[if lt IE 9]><script src="../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
     
-    <link href="http://libs.baidu.com/fontawesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="LIB/font-awesome.min.css" rel="stylesheet">
+      <!-- http://libs.baidu.com/fontawesome/4.0.3/css/font-awesome.min.css -->
+      
+    <!-- Custom CSS -->
+      <link herf="custom.css" rel="stylesheet">
+      
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -39,7 +45,7 @@
 
   <body style="">
   
-    <nav class="navbar navbar-inverse" role="navigation">
+    <nav class="navbar navbar-inverse navbar-custom" role="navigation">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -223,7 +229,7 @@
                   <input type="checkbox" name="rememberPassword">记住密码
                 </label>
               </div>
-              <button type="submit" class="btn btn-default" onclick="signin()">确定</button>
+              <button type="submit" class="btn btn-primary" onclick="signin()">确定</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
             </form>
           </div>
@@ -236,9 +242,12 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
-    <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
+    <script src="./LIB/jquery.min.js"></script>
+    <!--  https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js -->
+    <script src="./LIB/bootstrap.min.js"></script>
+    <!--  http://getbootstrap.com/dist/js/bootstrap.min.js -->
+    <script src="./LIB/docs.min.js"></script>
+    <!--  http://getbootstrap.com/assets/js/docs.min.js -->
 
   </body>
 </html>
