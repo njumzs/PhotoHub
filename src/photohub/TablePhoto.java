@@ -436,8 +436,6 @@ public class TablePhoto
 			}
 		}
 		return null;
-	
-			
 	}
 }
 

@@ -421,7 +421,7 @@ public class TableUser
 		return false;
 	}
 	@SuppressWarnings("resource")
-	public static boolean signIn(String email, String password) throws SQLException
+	public static int signIn(String email, String password) throws SQLException
 	{
 
 		//Çý¶¯³ÌÐòÃû
@@ -450,7 +450,11 @@ public class TableUser
 				String a = rs.getString("email");
 				String b = rs.getString("password");
 				if(a.equals(email) && b.equals(password))
-					return true;
+				{
+					int userID = rs.getInt("id");
+					return userID;
+				}
+					
 			}
 			
 		} catch(Exception e){
@@ -470,7 +474,7 @@ public class TableUser
 				ex.printStackTrace();
 			}
 		}
-		return false;
+		return -1;
 	}
 	public static String username(int id)
 	{
