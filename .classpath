@@ -9,5 +9,19 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.30-bin.jar"/>
+	<classpathentry kind="lib" path="D:/workspace/PhotoHub/lib/commons-fileupload-1.3.1.jar"/>
+	<classpathentry kind="lib" path="D:/workspace/PhotoHub/lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="D:/workspace/PhotoHub/lib/mysql-connector-java-5.1.30-bin.jar"/>
+	<classpathentry kind="lib" path="lib/commons-fileupload-1.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="D:/workspace/PhotoHub/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="D:/GitHub/PhotoHub/lib/activation.jar"/>
+	<classpathentry kind="lib" path="D:/GitHub/PhotoHub/lib/commons-fileupload-1.3.1.jar"/>
+	<classpathentry kind="lib" path="D:/GitHub/PhotoHub/lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="D:/GitHub/PhotoHub/lib/mysql-connector-java-5.1.27.jar"/>
+	<classpathentry kind="lib" path="D:/GitHub/PhotoHub/lib/mysql-connector-java-5.1.30-bin.jar"/>
+	<classpathentry kind="lib" path="D:/GitHub/PhotoHub/lib/org.json.jar"/>
+	<classpathentry kind="lib" path="D:/GitHub/PhotoHub/lib/servlet-api (1).jar"/>
+	<classpathentry kind="lib" path="D:/GitHub/PhotoHub/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
