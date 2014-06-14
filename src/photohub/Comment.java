@@ -1,4 +1,4 @@
-package backgroud;
+package photohub;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

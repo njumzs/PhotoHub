@@ -1,9 +1,12 @@
 package photohub;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.ServletException;
+
 public class Main {
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws SQLException, ServletException, IOException {
 	/*	TableUser.InvertUser("wangqi@gmail.com", "wangqi", "wangqi");
 		TableUser.InvertUser("puyang@gmail.com", "puyang", "puyang");
 		TableUser.InvertUser("mengzhanshuai@gmail.com", "mengzhanshuai", "mengzhanshuai");
@@ -14,7 +17,9 @@ public class Main {
 		TableUser.Updatepassword(1, "4");
 		TableUser.UpdateSex(1, 5);
 		TableUser.UpdateUsername(1, "6");
-	*/	System.out.println("1:born " + TableUser.borndate(1));
+	*/	
+		/*
+		System.out.println("1:born " + TableUser.borndate(1));
 		System.out.println("1:email " + TableUser.email(1));
 		System.out.println("1:head " + TableUser.head(1));
 		System.out.println("1:introduction " + TableUser.introduction(1));
@@ -29,7 +34,8 @@ public class Main {
 		System.out.println(TableUser.emailOccupied("email"));
 		System.out.println(TableUser.emailOccupied("q2hakjshdlkaj"));
 		System.out.println("sign in " + TableUser.signIn("wangqi@gmail.com", "wangqi"));
-
+*/
+		Upload.UpLoadPhoto("E://allen.jpg", "wangqi.jpg");
 
 	}
 }

@@ -5,12 +5,68 @@ import java.sql.DriverManager;
 import java.sql.SQLException; 
 import java.sql.Statement;   
 import java.sql.ResultSet;
+import java.util.Random;
+
 import com.mysql.jdbc.Driver;
 
 public class TableUser 
 {
-	
-	public static void InvertUser(String email, String password, String username) throws SQLException
+	@SuppressWarnings("resource")
+	public static int userID()
+	{
+		Random rand = new Random();
+		int randNum = rand.nextInt(90000) + 10000;
+		final String driver = "com.mysql.jdbc.Driver";
+		//URL指向要访问的数据库名doudou
+		final String URL = "jdbc:mysql://localhost:3306/photohub";
+		//创建//数据库表达式
+		Statement stmt = null;
+		//创建结果集
+		ResultSet rs = null;
+		//创建数据库连接
+		Connection conn = null;
+		try{
+			// 加载驱动程序
+			Class.forName(driver);
+			//连接数据库
+			conn = DriverManager.getConnection(URL, "root", "");
+			//查看是否连接成功
+			if(!conn.isClosed()){
+				System.out.println("Succeeded connecting to the Database!");
+			}
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT ID FROM user");
+			
+			while(rs.next())
+			{
+				int temp = rs.getInt("ID");
+				if(randNum == temp)
+				{
+					randNum = rand.nextInt(90000) + 10000;
+					rs = stmt.executeQuery("SELECT ID FROM user");
+				}
+			}
+			return randNum;
+		}catch(Exception e){
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(stmt != null) {
+					stmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch(Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+		return randNum;
+	}
+	public static void InvertUser(String email, String password, String username, int ID) throws SQLException
 	{
 
 		//驱动程序名
@@ -33,16 +89,8 @@ public class TableUser
 				System.out.println("Succeeded connecting to the Database!");
 			}
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT ID FROM user");
-			int max = 0;
-			while(rs.next())
-			{
-				int temp = rs.getInt("ID");
-				if(max < temp)
-					max = temp;
-			}
-			max = max + 1;
-			String a = "INSERT INTO user VALUES('" + max + "','" + email + "','" + password + "','"
+		
+			String a = "INSERT INTO user VALUES('" + ID + "','" + email + "','" + password + "','"
 					+ username + "','" + 0 + "','','" + "F:\\tslstanley\\Software Engineering\\Workspace\\userdefault.svg" + "','')";
 			stmt.executeUpdate(a);
 		} catch(Exception e){
