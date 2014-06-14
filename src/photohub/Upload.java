@@ -56,7 +56,7 @@ public class Upload extends HttpServlet {
         return item;
 
     }
-	public static void UpLoadPhoto(String realFilePath, String FileName)
+	public static boolean UpLoadPhoto(String realFilePath, String FileName)
 	{
 		
 		// 为解析类提供配置信息
@@ -67,7 +67,7 @@ public class Upload extends HttpServlet {
 		sfu.setFileSizeMax(1024 * 400);
 		// 每个表单域中数据会封装到一个对应的FileItem对象上
 		try {
-			
+				String prefix = realFilePath.substring(realFilePath.lastIndexOf(".") + 1);
 				FileItem item = createFileItem(realFilePath);
 			
 				// isFormField为true，表示这不是文件上传表单域
@@ -84,19 +84,22 @@ public class Upload extends HttpServlet {
 					System.out.println(fileName);
 					// 该方法在某些平台(操作系统),会返回路径+文件名
 					fileName = fileName.substring(fileName.lastIndexOf("/") + 1);
-					File file = new File(path + "\\" + FileName);
+					File file = new File(path + "\\" + FileName + "." + prefix);
 					if (!file.exists()) {
 						item.write(file);
 						// 将上传图片的名字记录到数据库中
 
 						//resp.sendRedirect("/upload/ok.html");
+						
 						System.out.println("successful");
+						return true;
 					}
 				
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return false;
 
 	}
 
