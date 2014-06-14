@@ -16,13 +16,20 @@
     <title>图片流</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="LIB/bootstrap.min.css" rel="stylesheet">
+    <!-- http://getbootstrap.com/dist/css/bootstrap.min.css -->
 
     <!-- Documentation extras -->
-    <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
+    <link href="LIB/docs.min.css" rel="stylesheet">
+      <!-- http://getbootstrap.com/assets/css/docs.min.css -->
     <!--[if lt IE 9]><script src="../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <link href="http://libs.baidu.com/fontawesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    
+    <link href="LIB/font-awesome.min.css" rel="stylesheet">
+      <!-- http://libs.baidu.com/fontawesome/4.0.3/css/font-awesome.min.css -->
+      
+    <!-- Custom CSS -->
+    <link href="custom.css" rel="stylesheet">
+      
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
@@ -34,9 +41,9 @@
 
   </head>
 
-  <body>
+  <body class="body-custom">
   
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-inverse navbar-custom" role="navigation">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -114,8 +121,17 @@
 
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
-            <div class="item">
+            <div class="item active">
               <img src="http://hd.wallpaperswide.com/thumbs/field_sunrise-t2.jpg" alt="Oops ...">
+              <div class="carousel-caption">
+                
+                <h1>Welcome to PhotoHub, powered by Bootstrap</h1>
+                <p>Bootstrap is a free collection of tools for creating websites and web applications. It contains HTML and CSS-based design templates for typography, forms, buttons, navigation and other interface components, as well as optional JavaScript extensions.</p>
+              </div>
+            </div>
+
+            <div class="item">
+              <img src="http://hd.wallpaperswide.com/thumbs/spring_mountain_landscape_2-t2.jpg" alt="Oops ...">
               <div class="carousel-caption">
                 
                 <h1>Welcome to PhotoHub, powered by Bootstrap</h1>
@@ -123,14 +139,13 @@
                 It is the No.1 project on GitHub with 65,000+ stars and 23,800 forks (as of March 2014) [1] and has been used by NASA and MSNBC, among many others.</p>
               </div>
             </div>
-
-            <div class="item active">
-              <img src="http://hd.wallpaperswide.com/thumbs/spring_mountain_landscape_2-t2.jpg" alt="Oops ...">
+            
+            <div class="item">
+              <img src="http://hd.wallpaperswide.com/thumbs/brazil_2014-t2.jpg" alt="Oops ...">
               <div class="carousel-caption">
                 
                 <h1>Welcome to PhotoHub, powered by Bootstrap</h1>
-                <p>Bootstrap is a free collection of tools for creating websites and web applications. It contains HTML and CSS-based design templates for typography, forms, buttons, navigation and other interface components, as well as optional JavaScript extensions.
-                It is the No.1 project on GitHub with 65,000+ stars and 23,800 forks (as of March 2014) [1] and has been used by NASA and MSNBC, among many others.</p>
+                <p>2014 World Cup in Brazil</p>
               </div>
             </div>
           </div>
