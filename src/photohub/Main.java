@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 
+import PhotoFilter.PicUtil;
+
 public class Main {
 	public static void main(String[] args) throws SQLException, ServletException, IOException {
 	/*	TableUser.InvertUser("wangqi@gmail.com", "wangqi", "wangqi");
@@ -36,16 +38,18 @@ public class Main {
 		System.out.println(TableUser.emailOccupied("q2hakjshdlkaj"));
 		System.out.println("sign in " + TableUser.signIn("wangqi@gmail.com", "wangqi"));
 */
-//		Upload.UpLoadPhoto("E://allen.jpg", "wangqi.jpg");
+		Upload.UpLoadPhoto("E://allen.jpg", "12312");
 /*		TablePhoto.InvertPhoto(12345,"12345", TablePhoto.photoID());
 		TablePhoto.InvertPhoto(13234,"asdasd", TablePhoto.photoID());
 		TablePhoto.InvertPhoto(56899,"l;,l;,,", TablePhoto.photoID());
 		TablePhoto.InvertPhoto(56756,"wangqiwad", TablePhoto.photoID());
 		TablePhoto.InvertPhoto(19023,"&*&(*^", TablePhoto.photoID());
-*/		ArrayList <String>a = TablePhoto.photo();
+		ArrayList <String>a = TablePhoto.photo();
 		int num = a.size();
 		System.out.println(num);
 		for(int i = 0 ; i < num ; i ++)
 			System.out.println(a.get(i).toString());
+*/
+		
 	}
 }
