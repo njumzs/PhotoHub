@@ -1,7 +1,11 @@
 @CHARSET "UTF-8";
 
 .navbar-custom {
-    background-color: #218dfa !important;
-    border-color: #218dfa !important;
+    background-color: transparent;
 }
 
+.body-custom {
+    background-image: url(IMAGE/bg-blackdesk.jpg);
+    background-attachment: fixed;
+    background-repeat: repeat;
+}

@@ -30,7 +30,7 @@
       <!-- http://libs.baidu.com/fontawesome/4.0.3/css/font-awesome.min.css -->
       
     <!-- Custom CSS -->
-      <link herf="custom.css" rel="stylesheet">
+      <link href="custom.css" rel="stylesheet">
       
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
