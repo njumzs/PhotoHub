@@ -2,6 +2,7 @@ package photohub;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 
@@ -35,7 +36,16 @@ public class Main {
 		System.out.println(TableUser.emailOccupied("q2hakjshdlkaj"));
 		System.out.println("sign in " + TableUser.signIn("wangqi@gmail.com", "wangqi"));
 */
-		Upload.UpLoadPhoto("E://allen.jpg", "wangqi.jpg");
-
+//		Upload.UpLoadPhoto("E://allen.jpg", "wangqi.jpg");
+/*		TablePhoto.InvertPhoto(12345,"12345", TablePhoto.photoID());
+		TablePhoto.InvertPhoto(13234,"asdasd", TablePhoto.photoID());
+		TablePhoto.InvertPhoto(56899,"l;,l;,,", TablePhoto.photoID());
+		TablePhoto.InvertPhoto(56756,"wangqiwad", TablePhoto.photoID());
+		TablePhoto.InvertPhoto(19023,"&*&(*^", TablePhoto.photoID());
+*/		ArrayList <String>a = TablePhoto.photo();
+		int num = a.size();
+		System.out.println(num);
+		for(int i = 0 ; i < num ; i ++)
+			System.out.println(a.get(i).toString());
 	}
 }
