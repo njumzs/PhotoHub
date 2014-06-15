@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="photohub.*"%>
 <%!
-    int userid = Integer.parseInt((String)(request.getSession()).getAttribute("userId")); 
+    int userid = -1; 
 %>
 <% 
+userid = (Integer)(request.getSession()).getAttribute("userId"); 
    if (userid < 0) {
    		response.sendRedirect(request.getContextPath() + "/index.jsp");
 		return;

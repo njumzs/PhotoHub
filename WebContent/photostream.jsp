@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8" import="photohub.*" %>
+    pageEncoding="utf-8" import="photohub.*" import="java.util.*" %>
 <%!
 	Integer userid = null;
 	String useremail = null;
+	ArrayList<PhotoInfo> photolist = null;
 %>
 <% 
 	userid = (Integer) (request.getSession()).getAttribute("userId");
@@ -11,6 +12,7 @@
    		response.sendRedirect(request.getContextPath() + "/index.jsp");
 		return;
 	}
+   photolist = TablePhoto.photo();
 %>
 <!DOCTYPE html>
 <html>
@@ -143,20 +145,30 @@
             </div>
           </div> -->
           <div class="row">
+          <%
+          Iterator<PhotoInfo> iterator = photolist.iterator();
+          PhotoInfo pinfo = null;
+          while (iterator.hasNext()) {
+        	  pinfo = iterator.next();
+          %>
             <div class="media">
               <a class="pull-left" href="#">
                 <img class="media-object" src="IMAGE/userdefault.svg" alt="...">
               </a>
               <div class="media-body">
-                <h4 class="media-heading"><%= useremail %></h4>
+                <h4 class="media-heading"><%= pinfo.userId %></h4>
                 <div>
-                  <img src="http://hd.wallpaperswide.com/thumbs/field_sunrise-t2.jpg" alt="...">
-                  <h3>Thumbnail label</h3>
+                  <img src="<%= pinfo.photo %>" alt="Oops...">
+                  <!-- http://hd.wallpaperswide.com/thumbs/field_sunrise-t2.jpg -->
+                  <h3><%= pinfo.introduction %></h3>
                   <p>...</p>
                   <p><a href="#" class="btn btn-primary btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a></p>
                 </div>
               </div>
             </div>
+            <%
+            }
+            %>
           </div>
         </div>
       </div>
@@ -170,7 +182,7 @@
               <h4 class="modal-title">上传你的图片</h4>
             </div>
             <div class="modal-body">
-              <form role="form" method="get" action="upload.jsp">
+              <form role="form" method="post" action="upload">
                 <div class="form-group">
                   <label for="input">添加评论</label>
                   <input type="text" class="form-control" name="inputIntroduction" placeholder="给图片添加一个评论">

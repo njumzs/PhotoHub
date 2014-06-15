@@ -29,16 +29,7 @@ public class UploadServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	    int userid = (int) request.getSession().getAttribute("userId"); 
-	       if (userid < 0) {
-	       		response.sendRedirect(request.getContextPath() + "/index.jsp");
-	    		return;
-	    	}
-
-	       Integer photoid = TablePhoto.photoID();
-	       String filename = request.getParameter("inputFile");
-	       Upload.uploadPhoto(filename, "./IMAGE/" + userid + "/" + photoid);
-	       response.sendRedirect(request.getContextPath() + "/photostream.jsp");
+		doPost(request, response);
 	}
 
 	/**
@@ -46,6 +37,20 @@ public class UploadServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String introduction = request.getParameter("inputIntroduction"); 
+		String filename = request.getParameter("inputFile"); 
+
+	    Integer userid = (Integer) request.getSession().getAttribute("userId"); 
+	       if (userid < 0) {
+	       		response.sendRedirect(request.getContextPath() + "/index.jsp");
+	    		return;
+	    	}
+
+	       int photoid = TablePhoto.photoID();
+	       System.out.println("store " + filename + " to ./IMAGE/" + userid + "/" + photoid);
+	       Upload.uploadPhoto(userid.intValue(), filename, "./IMAGE/" + userid.toString() + "/");
+	       TablePhoto.introduction(photoid);
+	       response.sendRedirect(request.getContextPath() + "/photostream.jsp");
 	}
 
 }

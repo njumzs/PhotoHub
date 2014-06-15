@@ -38,7 +38,7 @@ public class Main {
 		System.out.println(TableUser.emailOccupied("q2hakjshdlkaj"));
 		System.out.println("sign in " + TableUser.signIn("wangqi@gmail.com", "wangqi"));
 */
-		Upload.UpLoadPhoto("E://allen.jpg", "12312");
+		Upload.uploadPhoto("E://allen.jpg", "12312");
 /*		TablePhoto.InvertPhoto(12345,"12345", TablePhoto.photoID());
 		TablePhoto.InvertPhoto(13234,"asdasd", TablePhoto.photoID());
 		TablePhoto.InvertPhoto(56899,"l;,l;,,", TablePhoto.photoID());

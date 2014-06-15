@@ -38,7 +38,7 @@ public class SigninServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String useremail = null;
-		Integer userid = -1;
+		int userid = -1;
 
 		useremail = request.getParameter("signinEmail");
 		String password = request.getParameter("signinPassword");
@@ -56,7 +56,7 @@ public class SigninServlet extends HttpServlet {
 		}
 		System.out.println("User : " + useremail + " (id : " + userid + ") sign in successfully");
 		
-		userid = TableUser.userID();
+		//userid = TableUser.userID();
 		if (userid < 0) {
 			response.sendRedirect(request.getContextPath() + "/index.jsp");
 			return;
