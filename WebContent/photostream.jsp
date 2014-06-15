@@ -1,11 +1,13 @@
-<%@
-    page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8" import="photohub.*" %>
 <%!
-    int userid = -1;
-    String useremail = null; %>
-<% useremail = (String)session.getAttribute("userEmail");
-   if (useremail == null || useremail.equals("") ) {
+	Integer userid = null;
+	String useremail = null;
+%>
+<% 
+	userid = (Integer) (request.getSession()).getAttribute("userId");
+	useremail = (String) (request.getSession()).getAttribute("userEmail");
+   if ( userid.intValue() < 0 ) {
    		response.sendRedirect(request.getContextPath() + "/index.jsp");
 		return;
 	}
@@ -21,20 +23,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="PhotoHub welcome and sign in page.">
     <meta name="keywords" content="PhotoHub, welcome, sign in">
-    <meta name="author" content="Zhan Shen, Qi shen, Pu fu er, Tang shunlei">
+    <meta name="author" content="Meng zhanshuai, Wang qi, Pu yang, Tang shunlei">
 
     <link rel="shortcut icon" href="http://getbootstrap.com/docs-assets/ico/favicon.png">
 
     <title>图片流</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="LIB/bootstrap.min.css" rel="stylesheet">
+    <!-- http://getbootstrap.com/dist/css/bootstrap.min.css -->
 
     <!-- Documentation extras -->
-    <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
+    <link href="LIB/docs.min.css" rel="stylesheet">
+      <!-- http://getbootstrap.com/assets/css/docs.min.css -->
     <!--[if lt IE 9]><script src="../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <link href="http://libs.baidu.com/fontawesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    
+    <link href="LIB/font-awesome.min.css" rel="stylesheet">
+      <!-- http://libs.baidu.com/fontawesome/4.0.3/css/font-awesome.min.css -->
+      
+    <!-- Custom CSS -->
+      <link href="custom.css" rel="stylesheet">
+      
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
