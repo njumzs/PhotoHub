@@ -56,7 +56,7 @@ public class Upload extends HttpServlet {
         return item;
 
     }
-	public static boolean uploadPhoto(String realFilePath, String FileName)
+	public static boolean uploadPhoto(int userID, String realFilePath, String FilePath)
 	{
 		
 		// 为解析类提供配置信息
@@ -76,22 +76,24 @@ public class Upload extends HttpServlet {
 					// 获得存放文件的物理路径
 					// upload下的某个文件夹 得到当前在线的用户 找到对应的文件夹
 
-					String path = "photo";
+					String path = FilePath;
 						
 					System.out.println(path);
 					// 获得文件名
 					String fileName = item.getName();
 					System.out.println(fileName);
 					// 该方法在某些平台(操作系统),会返回路径+文件名
+					int photoID = TablePhoto.photoID();
 					fileName = fileName.substring(fileName.lastIndexOf("/") + 1);
-					File file = new File(path + "\\" + FileName + "." + prefix);
+					File file = new File(path + "\\" + photoID + "." + prefix);
 					if (!file.exists()) {
 						item.write(file);
 						// 将上传图片的名字记录到数据库中
 
-						//resp.sendRedirect("/upload/ok.html");
+						//resp.sendRedirect("/uploa/ok.html");
 						
 						System.out.println("successful");
+						TablePhoto.InvertPhoto(userID, path + "\\" + photoID + "." + prefix, photoID);
 						return true;
 					}
 				
