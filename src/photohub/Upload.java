@@ -56,7 +56,7 @@ public class Upload extends HttpServlet {
         return item;
 
     }
-	public static boolean UpLoadPhoto(String realFilePath, String FileName)
+	public static boolean uploadPhoto(String realFilePath, String FileName)
 	{
 		
 		// 为解析类提供配置信息

@@ -43,7 +43,7 @@
 
   </head>
 
-  <body style="">
+  <body class="body-custom">
   
     <nav class="navbar navbar-inverse navbar-custom" role="navigation">
       <div class="container-fluid">
@@ -143,6 +143,16 @@
                 It is the No.1 project on GitHub with 65,000+ stars and 23,800 forks (as of March 2014) [1] and has been used by NASA and MSNBC, among many others.</p>
               </div>
             </div>
+              
+            <div class="item">
+              <img class="carousel" src="http://hd.wallpaperswide.com/thumbs/brazil_2014-t2.jpg" alt="Oops ...">
+              <div class="carousel-caption">
+                
+                <h1>Welcome to PhotoHub, powered by Bootstrap</h1>
+                <p>2014 World Cup in Brazil</p>
+              </div>
+            </div>
+            
           </div>
 
           <!-- Controls -->
@@ -157,7 +167,7 @@
         <hr class="half-rule">
           <div class="row">
             <div class="col-sm-9 col-md-6">
-              <div class="thumbnail">
+              <div class="thumbnail blurglass">
                 <img src="http://hd.wallpaperswide.com/thumbs/field_sunrise-t2.jpg" alt="...">
                 <div class="caption">
                   <h3>We provide extremely fast channel</h3>
@@ -166,7 +176,7 @@
               </div>
             </div>
             <div class="col-sm-9 col-md-6">
-              <div class="thumbnail">
+              <div class="thumbnail blurglass">
                 <img src="http://hd.wallpaperswide.com/thumbs/spring_mountain_landscape_2-t2.jpg" alt="...">
                 <div class="caption">
                   <h3>现在注册</h3>
@@ -209,13 +219,12 @@
       <div class="modal-dialog">
         <div class="modal-content">
 
-
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">&times;</button>
             <h4 class="modal-title">用户登录</h4>
           </div>
           <div class="modal-body">
-            <form role="form" action="./signin.jsp" method="post">
+            <form role="form" action="signin" method="post">
               <div class="form-group">
                 <label for="exampleInputEmail1">用户邮箱</label>
                 <input type="email" class="form-control" name="signinEmail" placeholder="输入注册邮箱">

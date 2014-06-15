@@ -7,5 +7,36 @@
 .body-custom {
     background-image: url(IMAGE/bg-blackdesk.jpg);
     background-attachment: fixed;
-    background-repeat: repeat;
+    background-repeat:;
+}
+
+.blurglass {
+    filter:alpha(opacity=100); /* IE */  
+    border-color: transparent;
+    text-decoration: blink;
+    //background:#ccc;
+    //border: 1px solid black;
+    border-radius:5px;
+    //left:50%; 
+    //z-index:99; 
+    text-align:center; 
+    //padding:20px;
+    background-color: rgba(127, 127, 127, .4);
+    //box-shadow: 5px 5px 5px #888888;
+}
+
+h3 {
+    color:rgb(255,255,255);
+}
+
+p {
+    color:rgb(255, 255, 255);
+}
+
+img.carousel {
+    opacity:0.6;
+}
+
+img.carousel:hover {
+    opacity:1.0;
 }
