@@ -5,7 +5,7 @@
 <%  useremail = request.getParameter("signinEmail");
 	String password = request.getParameter("signinPassword");
 	System.out.println("sign in " + useremail + " " + password);
-	if ( TableUser.signIn(useremail, password) == false ) {
+	if ( TableUser.signIn(useremail, password) > 0 ) {
 		System.out.println("sign in failed");
 		response.sendRedirect(request.getContextPath() + "/index.jsp");
 		return;

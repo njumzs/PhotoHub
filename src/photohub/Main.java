@@ -1,20 +1,24 @@
 package photohub;
 
+import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 
 import PhotoFilter.PicUtil;
 
 public class Main {
 	public static void main(String[] args) throws SQLException, ServletException, IOException {
-	/*	TableUser.InvertUser("wangqi@gmail.com", "wangqi", "wangqi");
-		TableUser.InvertUser("puyang@gmail.com", "puyang", "puyang");
-		TableUser.InvertUser("mengzhanshuai@gmail.com", "mengzhanshuai", "mengzhanshuai");
-		TableUser.InvertUser("tangshunlei@gmail.com", "tangshunlei", "tangshunlei");
-		TableUser.UpdateBorndate(1, "1");
+	//	TableUser.InvertUser("wangqi@gmail.com", "wangqi", "wangqi",70000);
+	//	TableUser.InvertUser("puyang@gmail.com", "puyang", "puyang",80000);
+	//	TableUser.InvertUser("mengzhanshuai@gmail.com", "mengzhanshuai", "mengzhanshuai",90000);
+	//	TableUser.InvertUser("tangshunlei@gmail.com", "tangshunlei", "tangshunlei",10000);
+	/*	TableUser.UpdateBorndate(1, "1");
 		TableUser.UpdateHead(1, "2");
 		TableUser.UpdateIntroduction(1, "3");
 		TableUser.Updatepassword(1, "4");
@@ -38,7 +42,7 @@ public class Main {
 		System.out.println(TableUser.emailOccupied("q2hakjshdlkaj"));
 		System.out.println("sign in " + TableUser.signIn("wangqi@gmail.com", "wangqi"));
 */
-		Upload.UpLoadPhoto("E://allen.jpg", "12312");
+	//	Upload.UpLoadPhoto("E://allen.jpg", "12312");
 /*		TablePhoto.InvertPhoto(12345,"12345", TablePhoto.photoID());
 		TablePhoto.InvertPhoto(13234,"asdasd", TablePhoto.photoID());
 		TablePhoto.InvertPhoto(56899,"l;,l;,,", TablePhoto.photoID());
@@ -50,6 +54,12 @@ public class Main {
 		for(int i = 0 ; i < num ; i ++)
 			System.out.println(a.get(i).toString());
 */
-		
+	//	BufferedImage originalPic = ImageIO.read(new FileInputStream(imgPath)); 
+		PicUtil.getDlurPicture("E://iverson.jpg", "E://1.jpg");
+		PicUtil.getGrayPicture("E://iverson.jpg", "E://2.jpg");
+		PicUtil.getPicEdge("E://iverson.jpg", "E://3.jpg");
+		PicUtil.getSharperPicture("E://iverson.jpg", "E://4.jpg");
+		PicUtil.gray("E://iverson.jpg", "E://5.jpg");
+		PicUtil.pressText("BINGO", "E://iverson.jpg", "E://6.jpg");
 	}
 }
