@@ -388,7 +388,7 @@ public class TablePhoto
 		return null;	
 	}
 	@SuppressWarnings("null")
-	public static ArrayList<String> photo()
+	public static ArrayList<PhotoInfo> photo()
 	{
 		final String driver = "com.mysql.jdbc.Driver";
 		//URL指向要访问的数据库名doudou
@@ -410,12 +410,18 @@ public class TablePhoto
 			}
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM photo ");
-			ArrayList<String> list = new ArrayList<String>();
+			ArrayList<PhotoInfo> list = new ArrayList<PhotoInfo>();
 			
 			while(rs.next())
 			{
-				String a = rs.getString("photo");
-				list.add(a);
+				PhotoInfo temp = new PhotoInfo();
+				temp.photoID =  rs.getInt("photoID");
+				temp.userID = rs.getInt("userID");
+				temp.head = TableUser.head(temp.userID);
+				temp.photo = rs.getString("photo");
+				temp.introduction = rs.getString("introduction");
+				temp.time = rs.getString("time");
+				
 			}
 			return list;
 		} catch(Exception e){
