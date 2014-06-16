@@ -56,11 +56,28 @@ public class Main {
 			System.out.println(a.get(i).toString());
 */
 	//	BufferedImage originalPic = ImageIO.read(new FileInputStream(imgPath)); 
-		PicUtil.getDlurPicture("E://iverson.jpg", "E://1.jpg");
-		PicUtil.getGrayPicture("E://iverson.jpg", "E://2.jpg");
-		PicUtil.getPicEdge("E://iverson.jpg", "E://3.jpg");
-		PicUtil.getSharperPicture("E://iverson.jpg", "E://4.jpg");
-		PicUtil.gray("E://iverson.jpg", "E://5.jpg");
-		PicUtil.pressText("BINGO", "E://iverson.jpg", "E://6.jpg");
+//		PicUtil.getDlurPicture("E://iverson.jpg", "E://1.jpg");
+//		PicUtil.getGrayPicture("E://iverson.jpg", "E://2.jpg");
+//		PicUtil.getPicEdge("E://iverson.jpg", "E://3.jpg");
+//		PicUtil.getSharperPicture("E://iverson.jpg", "E://4.jpg");
+//		PicUtil.gray("E://iverson.jpg", "E://5.jpg");
+//		PicUtil.pressText("BINGO", "E://iverson.jpg", "E://6.jpg");
+		
+/*		ArrayList <PhotoInfo>a = TablePhoto.photoList();
+		int num = a.size();
+		System.out.println(num);
+		for(int i = 0 ; i < num ; i ++)
+			System.out.println(a.get(i).photo);
+		
+		System.out.println(TablePhoto.photoList().toString());
+		System.out
+				.println((new String(
+						"E:\\Tomcat\\apache-tomcat-7.0.47-windows-x64\\apache-tomcat-7.0.47\\webapps\\PhotoHub\\photo\\82830.44bec144t9a1b082baf67&690.jpg"))
+						.replaceAll("\\\\", "\\\\\\\\"));
+		String filename = "9-1-193474-1-34-163-20081225072400.jpg";
+		System.out.println(filename.substring(filename.lastIndexOf(".") + 1));
+	*/
+		//TablePhoto.updateIntroduction(71314, "NBA");
+		Comment.AddComment("asd", "asd", "asdad", "asdad");
 	}
 }

@@ -19,88 +19,84 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-
-
-
-
 public class Upload extends HttpServlet {
 	@SuppressWarnings("unchecked")
-	private static FileItem createFileItem(String filePath)
-    {
-        FileItemFactory factory = new DiskFileItemFactory(16, null);
-        String textFieldName = "textField";
-        int num = filePath.lastIndexOf(".");
-        String extFile = filePath.substring(num);
-        FileItem item = factory.createItem(textFieldName, "text/plain", true,
-            "MyFileName" + extFile);
-        File newfile = new File(filePath);
-        int bytesRead = 0;
-        byte[] buffer = new byte[8192];
-        try
-        {
-            FileInputStream fis = new FileInputStream(newfile);
-            OutputStream os = item.getOutputStream();
-            while ((bytesRead = fis.read(buffer, 0, 8192))
-                != -1)
-            {
-                os.write(buffer, 0, bytesRead);
-            }
-            os.close();
-            fis.close();
-        }
-        catch (IOException e)
-        {
-           
-        }
-
-        return item;
-
-    }
-	public static boolean uploadPhoto(int userID, String realFilePath, String FilePath)
-	{
-		
-		// Îª½âÎöÀàÌá¹©ÅäÖÃĞÅÏ¢
-		DiskFileItemFactory factory = new DiskFileItemFactory();
-		// ´´½¨½âÎöÀàµÄÊµÀı
-		ServletFileUpload sfu = new ServletFileUpload(factory);
-		// ¿ªÊ¼½âÎö
-		sfu.setFileSizeMax(1024 * 400);
-		// Ã¿¸ö±íµ¥ÓòÖĞÊı¾İ»á·â×°µ½Ò»¸ö¶ÔÓ¦µÄFileItem¶ÔÏóÉÏ
+	private static FileItem createFileItem(String filePath) {
+		FileItemFactory factory = new DiskFileItemFactory(16, null);
+		String textFieldName = "textField";
+		int num = filePath.lastIndexOf(".");
+		String extFile = filePath.substring(num);
+		FileItem item = factory.createItem(textFieldName, "text/plain", true,
+				"MyFileName" + extFile);
+		File newfile = new File(filePath);
+		int bytesRead = 0;
+		byte[] buffer = new byte[8192];
 		try {
-				String prefix = realFilePath.substring(realFilePath.lastIndexOf(".") + 1);
-				FileItem item = createFileItem(realFilePath);
-			
-				// isFormFieldÎªtrue£¬±íÊ¾Õâ²»ÊÇÎÄ¼şÉÏ´«±íµ¥Óò
-				
-					
-					// »ñµÃ´æ·ÅÎÄ¼şµÄÎïÀíÂ·¾¶
-					// uploadÏÂµÄÄ³¸öÎÄ¼ş¼Ğ µÃµ½µ±Ç°ÔÚÏßµÄÓÃ»§ ÕÒµ½¶ÔÓ¦µÄÎÄ¼ş¼Ğ
+			FileInputStream fis = new FileInputStream(newfile);
+			OutputStream os = item.getOutputStream();
+			while ((bytesRead = fis.read(buffer, 0, 8192)) != -1) {
+				os.write(buffer, 0, bytesRead);
+			}
+			os.close();
+			fis.close();
+		} catch (IOException e) {
 
-					String path = FilePath;
-						
-					System.out.println(path);
-					// »ñµÃÎÄ¼şÃû
-					String fileName = item.getName();
-					System.out.println(fileName);
-					// ¸Ã·½·¨ÔÚÄ³Ğ©Æ½Ì¨(²Ù×÷ÏµÍ³),»á·µ»ØÂ·¾¶+ÎÄ¼şÃû
-					int photoID = TablePhoto.photoID();
-					fileName = fileName.substring(fileName.lastIndexOf("/") + 1);
-					File file = new File(path + "\\" + photoID + "." + prefix);
-					if (!file.exists()) {
-						item.write(file);
-						// ½«ÉÏ´«Í¼Æ¬µÄÃû×Ö¼ÇÂ¼µ½Êı¾İ¿âÖĞ
-
-						//resp.sendRedirect("/uploa/ok.html");
-						
-						System.out.println("successful");
-						TablePhoto.InvertPhoto(userID, path + "\\" + photoID + "." + prefix, photoID);
-						return true;
-					}
-				
-			
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
+
+		return item;
+
+	}
+
+	public static boolean uploadPhoto(int userID, String realFilePath,
+			String FilePath) {
+
+//		System.out.println("1store file " + realFilePath + " " + FilePath);
+//
+//		// ä¸ºè§£æç±»æä¾›é…ç½®ä¿¡æ¯
+//		DiskFileItemFactory factory = new DiskFileItemFactory();
+//		// åˆ›å»ºè§£æç±»çš„å®ä¾‹
+//		ServletFileUpload sfu = new ServletFileUpload(factory);
+//		// å¼€å§‹è§£æ
+//		sfu.setFileSizeMax(1024 * 400);
+//		// æ¯ä¸ªè¡¨å•åŸŸä¸­æ•°æ®ä¼šå°è£…åˆ°ä¸€ä¸ªå¯¹åº”çš„FileItemå¯¹è±¡ä¸Š
+//		try {
+//			System.out.println("2store file " + realFilePath + " " + FilePath);
+//
+//			String prefix = realFilePath.substring(realFilePath
+//					.lastIndexOf(".") + 1);
+//			FileItem item = createFileItem(realFilePath);
+//
+//			// isFormFieldä¸ºtrueï¼Œè¡¨ç¤ºè¿™ä¸æ˜¯æ–‡ä»¶ä¸Šä¼ è¡¨å•åŸŸ
+//
+//			// è·å¾—å­˜æ”¾æ–‡ä»¶çš„ç‰©ç†è·¯å¾„
+//			// uploadä¸‹çš„æŸä¸ªæ–‡ä»¶å¤¹ å¾—åˆ°å½“å‰åœ¨çº¿çš„ç”¨æˆ· æ‰¾åˆ°å¯¹åº”çš„æ–‡ä»¶å¤¹
+//
+//			String path = FilePath;
+//
+//			System.out.println(path);
+//			// è·å¾—æ–‡ä»¶å
+//			String fileName = item.getName();
+//			System.out.println(fileName);
+//			// è¯¥æ–¹æ³•åœ¨æŸäº›å¹³å°(æ“ä½œç³»ç»Ÿ),ä¼šè¿”å›è·¯å¾„+æ–‡ä»¶å
+//			int photoID = TablePhoto.photoID();
+//			fileName = fileName.substring(fileName.lastIndexOf("/") + 1);
+//			System.out.println("3store file " + realFilePath + " " + FilePath);
+//			File file = new File(path + "\\" + photoID + "." + prefix);
+//			if (!file.exists()) {
+//				item.write(file);
+//				// å°†ä¸Šä¼ å›¾ç‰‡çš„åå­—è®°å½•åˆ°æ•°æ®åº“ä¸­
+//
+//				// resp.sendRedirect("/uploa/ok.html");
+//
+//				System.out.println("successful");
+//				TablePhoto.InvertPhoto(userID, path + "\\\\" + photoID + "."
+//						+ prefix, photoID);
+//				return true;
+//			}
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		return false;
 
 	}

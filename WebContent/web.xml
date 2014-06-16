@@ -5,27 +5,62 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
 	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
   <display-name></display-name>
+
+  
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>SigninServlet</servlet-name>
     <servlet-class>photohubservlet.SigninServlet</servlet-class>
   </servlet>
+  
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>UploadServlet</servlet-name>
     <servlet-class>photohubservlet.UploadServlet</servlet-class>
   </servlet>
+  
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>CommentServlet</servlet-name>
+    <servlet-class>photohubservlet.CommentServlet</servlet-class>
+  </servlet>
+ 
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SignoutServlet</servlet-name>
+    <servlet-class>photohubservlet.SignoutServlet</servlet-class>
+  </servlet>
+ 
+
+ 
+  
   <servlet-mapping>
     <servlet-name>SigninServlet</servlet-name>
     <url-pattern>/signin</url-pattern>
   </servlet-mapping>
+  
   <servlet-mapping>
     <servlet-name>UploadServlet</servlet-name>
     <url-pattern>/upload</url-pattern>
   </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>CommentServlet</servlet-name>
+    <url-pattern>/comment</url-pattern>
+  </servlet-mapping>
+ 
+  <servlet-mapping>
+    <servlet-name>SignoutServlet</servlet-name>
+    <url-pattern>/signout</url-pattern>
+  </servlet-mapping>
+     
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+ 
+
 </web-app>

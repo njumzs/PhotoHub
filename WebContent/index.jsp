@@ -61,8 +61,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
+            <!-- <li class="active"><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li> -->
 
             <!-- trigger modal -->
             <li><a data-toggle="modal" href="#myModal">关于我们</a></li>
@@ -86,12 +86,14 @@
             <div class="form-group">
               <input type="text" class="form-control" placeholder="搜你感兴趣的">
             </div>
-            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></button>
+            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
           </form>
 
           <ul class="nav navbar-nav navbar-right">
-          	<% if (session.getAttribute("name") == null || session.getAttribute("name").toString().equals("")) { %>
+          	<% if (session.getAttribute("userId") == null || session.getAttribute("userId").toString().equals("")) { %>
             <li><a data-toggle="modal" href="#signUp">登录 <span class="glyphicon glyphicon-log-in"></span></a></li>
+	 		<% } else {%>
+	 		<li><a href="./photostream.jsp">图片流 <span class="glyphicon glyphicon-log-in"></span></a></li>
 	 		<% } %>
             <!-- dropdown -->
             <li class="dropdown">
@@ -125,7 +127,7 @@
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
             <div class="item">
-              <img src="http://hd.wallpaperswide.com/thumbs/field_sunrise-t2.jpg" alt="Oops ...">
+              <img src="IMAGE/bg-2014worldcup.jpg" alt="Oops ...">
               <div class="carousel-caption">
                 
                 <h1>Welcome to PhotoHub, powered by Bootstrap</h1>
@@ -135,7 +137,7 @@
             </div>
 
             <div class="item active">
-              <img src="http://hd.wallpaperswide.com/thumbs/spring_mountain_landscape_2-t2.jpg" alt="Oops ...">
+              <img src="IMAGE/bg-joker.jpg" alt="Oops ...">
               <div class="carousel-caption">
                 
                 <h1>Welcome to PhotoHub, powered by Bootstrap</h1>
@@ -145,7 +147,7 @@
             </div>
               
             <div class="item">
-              <img class="carousel" src="http://hd.wallpaperswide.com/thumbs/brazil_2014-t2.jpg" alt="Oops ...">
+              <img src="IMAGE/bg-thewintersoldier.jpg" alt="Oops ...">
               <div class="carousel-caption">
                 
                 <h1>Welcome to PhotoHub, powered by Bootstrap</h1>

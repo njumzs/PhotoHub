@@ -3,7 +3,8 @@ import="photohub.* " %>
 <%! String useremail = null;
 	int userid = -1;
 %>
-<%  useremail = request.getParameter("signinEmail");
+<%  
+	useremail = request.getParameter("signinEmail");
 	String password = request.getParameter("signinPassword");
 	System.out.println("sign in " + useremail + " " + password);
 	userid = TableUser.signIn(useremail, password);
