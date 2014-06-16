@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8" import="photohub.*" %>
+    pageEncoding="utf-8" import="photohub.*" import="java.util.*" %>
 <%!
 	Integer userid = null;
 	String useremail = null;
+	ArrayList<PhotoInfo> photolist = null;
 %>
 <% 
 	userid = (Integer) (request.getSession()).getAttribute("userId");
 	useremail = (String) (request.getSession()).getAttribute("userEmail");
-   if ( userid.intValue() < 0 ) {
+   if ( userid == null || userid.intValue() < 0 ) {
    		response.sendRedirect(request.getContextPath() + "/index.jsp");
 		return;
 	}
+   photolist = TablePhoto.photoList();
 %>
 <!DOCTYPE html>
 <html>
@@ -73,8 +75,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
+            <!-- <li class="active"><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li> -->
 
             <!-- trigger modal -->
             <li><a data-toggle="modal" href="#aboutUs">关于我们</a></li>
@@ -124,7 +126,7 @@
     <div class="container">
 
       <div class="container-fluid">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 col-md-offset-2 blurglass">
           <!-- <div class="row">
             <div class="col-xs-3">
               <a href="#" class="thumbnail">
@@ -143,20 +145,71 @@
             </div>
           </div> -->
           <div class="row">
+          <%
+          if (photolist != null) {
+	          ListIterator<PhotoInfo> photoIterator = photolist.listIterator(photolist.size());
+	          PhotoInfo pinfo = null;
+	          int count = 0;
+	          System.out.println("Parsing photolist ...");
+	          while (photoIterator.hasPrevious() && count < 5) {
+	        	  pinfo = photoIterator.previous();
+	        	  count ++;
+	        	  System.out.println("photo " + pinfo.photo);
+	        	  ArrayList<String> commentlist = Comment.commentlist(pinfo.photoID);
+          %>
             <div class="media">
               <a class="pull-left" href="#">
                 <img class="media-object" src="IMAGE/userdefault.svg" alt="...">
               </a>
               <div class="media-body">
-                <h4 class="media-heading"><%= useremail %></h4>
+                <h4 class="media-heading"><%= pinfo.userID %></h4>
                 <div>
-                  <img src="http://hd.wallpaperswide.com/thumbs/field_sunrise-t2.jpg" alt="...">
-                  <h3>Thumbnail label</h3>
-                  <p>...</p>
-                  <p><a href="#" class="btn btn-primary btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a></p>
+                  <img src="<%= request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath() + "/IMAGE/" + pinfo.photo.substring(pinfo.photo.lastIndexOf("\\") + 1) %>" alt="Oops...">
+                  <!-- http://hd.wallpaperswide.com/thumbs/field_sunrise-t2.jpg -->
+                  <h3><%= pinfo.introduction %></h3>
+                  <%
+    	          ListIterator<String> commentIterator = commentlist.listIterator();
+                  String comment = null;
+					while (commentIterator.hasNext()) {
+						comment = commentIterator.next();
+						%>
+		                  <p><%= comment %></p>
+				  <%
+					}
+                  %>
+                  <p><a data-toggle="modal" href="#commentPhoto<%= count %>" class="btn btn-primary btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a></p>
                 </div>
               </div>
             </div>
+
+              <!-- model -->
+		      <div class="modal fade" id="commentPhoto<%= count %>">
+		        <div class="modal-dialog">
+		          <div class="modal-content">
+		            <div class="modal-header">
+		              <button type="button" class="close" data-dismiss="modal" aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">&times;</button>
+		              <h4 class="modal-title">添加评论</h4>
+		            </div>
+		            <div class="modal-body">
+		              <form role="form" method="post" action="comment">
+		                <div class="form-group">
+		                  <textarea class="form-control" name="inputComment" rows="3"></textarea>
+		                  <p class="help-block">评论小于140字</p>
+		                </div>
+		                <input type="hidden" name="inputUserId" value="<%= userid %>">
+		                <input type="hidden" name="inputPhotoId" value="<%= pinfo.photoID %>">
+		                <button type="submit" class="btn btn-default">确定</button>
+		                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		              </form>
+		            </div>
+		          </div><!-- /.modal-content -->
+		        </div><!-- /.modal-dialog -->
+		      </div><!-- /.modal -->
+            <%
+            	}
+        	}
+            %>
+            
           </div>
         </div>
       </div>
@@ -170,7 +223,7 @@
               <h4 class="modal-title">上传你的图片</h4>
             </div>
             <div class="modal-body">
-              <form role="form" method="get" action="upload.jsp">
+              <form role="form" encType="multipart/form-data" method="post" action="upload">
                 <div class="form-group">
                   <label for="input">添加评论</label>
                   <input type="text" class="form-control" name="inputIntroduction" placeholder="给图片添加一个评论">
@@ -218,7 +271,7 @@
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
-
+      
     </div>
     
     <!-- Bootstrap core JavaScript

@@ -90,8 +90,15 @@ public class TablePhoto
 			Date currentTime = new Date();  
 		    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
 		    String dateString = formatter.format(currentTime);  
+		    
+		    // format input path
+			System.out.println("photo name " + photo);
+			photo = photo.replaceAll("\\\\", "\\\\\\\\");
+			System.out.println("photo name " + photo);
+
 			String a = "INSERT INTO photo VALUES('" + photoID + "','" + userID + "','" + photo + "','"
 					+ dateString + "','')";
+			System.out.println(a);
 			stmt.executeUpdate(a);
 		} catch(Exception e){
 			e.printStackTrace();
@@ -388,7 +395,7 @@ public class TablePhoto
 		return null;	
 	}
 	@SuppressWarnings("null")
-	public static ArrayList<PhotoInfo> photo()
+	public static ArrayList<PhotoInfo> photoList()
 	{
 		final String driver = "com.mysql.jdbc.Driver";
 		//URL指向要访问的数据库名doudou
@@ -421,7 +428,7 @@ public class TablePhoto
 				temp.photo = rs.getString("photo");
 				temp.introduction = rs.getString("introduction");
 				temp.time = rs.getString("time");
-				
+				list.add(temp);
 			}
 			return list;
 		} catch(Exception e){
@@ -442,6 +449,50 @@ public class TablePhoto
 			}
 		}
 		return null;
+	}
+	
+	public static void updateIntroduction(int id, String introduction) throws SQLException
+	{
+
+		//驱动程序名
+		final String driver = "com.mysql.jdbc.Driver";
+		//URL指向要访问的数据库名doudou
+		final String URL = "jdbc:mysql://localhost:3306/photohub";
+		//创建//数据库表达式
+		Statement stmt = null;
+		//创建结果集
+		ResultSet rs = null;
+		//创建数据库连接
+		Connection conn = null;
+		try{
+			// 加载驱动程序
+			Class.forName(driver);
+			//连接数据库
+			conn = DriverManager.getConnection(URL, "root", "");
+			//查看是否连接成功
+			if(!conn.isClosed()){
+				System.out.println("Succeeded connecting to the Database!");
+			}
+			stmt = conn.createStatement();
+			String a = "update photo set introduction = '" + introduction + "' where photoid = " + id;
+			stmt.executeUpdate(a);
+		} catch(Exception e){
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(stmt != null) {
+					stmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch(Exception ex) {
+				ex.printStackTrace();
+			}
+		}
 	}
 }
 
