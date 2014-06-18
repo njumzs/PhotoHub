@@ -16,16 +16,27 @@
 .body-custom {
     background-image: url(IMAGE/bg-blackdesk.jpg);
     background-attachment: fixed;
-    background-repeat:;
 }
 
 .media img {
     width: 100%;
 }
 
+.modal-content {
+	background-color: rgba(58, 58, 58, .8) !important;
+    
+}
+
 .carousel-inner img {
     width: 100%;
-    height: 300px;
+}
+
+.carousel-caption {
+    opacity:0.6;
+}
+
+.carousel-caption:hover {
+    opacity:1.0;
 }
 
 .blurglass {
@@ -44,8 +55,6 @@
     //box-shadow: 5px 5px 5px #888888;
 }
 
-
-
 h3 {
     color:rgb(255,255,255);
 }
@@ -58,10 +67,10 @@ p {
     color:rgb(255, 255, 255);
 }
 
-img.carousel {
-    opacity:0.6;
+label {
+    color: rgb(255,255,255);
 }
 
-img.carousel:hover {
-    opacity:1.0;
+.help-block {
+    color: rgb(192, 192, 192);
 }

@@ -173,7 +173,7 @@ public class Comment {
 		return CommentDetailsResultSet;
 		
 	}
-	public static ArrayList<String> commentlist(int photoID) throws SQLException, ClassNotFoundException
+	public static ArrayList<CommentInfo> commentlist(int photoID) throws SQLException, ClassNotFoundException
 	{
 		
 		Connection conn = null;
@@ -182,12 +182,14 @@ public class Comment {
 		PreparedStatement pstmt = conn.prepareStatement("select * from comments where pictureID = ?");
 		pstmt.setString(1, photoID + "");
 		ResultSet CommentDetailsResultSet = pstmt.executeQuery();
-		ArrayList<String> list = new ArrayList<String>();
+		ArrayList<CommentInfo> list = new ArrayList<CommentInfo>();
 		while(CommentDetailsResultSet.next())
 		{
-			String a =  CommentDetailsResultSet.getString("commentTime") +  "\n" + 
-						CommentDetailsResultSet.getString("commentowner") + " : " + CommentDetailsResultSet.getString("commentMess");
-			list.add(a);
+			 CommentInfo a = new  CommentInfo();
+			 a.time = CommentDetailsResultSet.getString("commentTime");
+			 a.userName = CommentDetailsResultSet.getString("commentowner");
+			 a.commentMess = CommentDetailsResultSet.getString("commentMess");
+			 list.add(a);
 		}
 		return list;
 	}
