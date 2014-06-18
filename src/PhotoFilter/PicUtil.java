@@ -45,7 +45,7 @@ public class PicUtil {
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
-	public final BufferedImage getGrayPicture(String imgPath) throws FileNotFoundException, IOException {
+	public static BufferedImage getGrayPicture(String imgPath, String outputImgPath) throws FileNotFoundException, IOException {
 		BufferedImage originalPic=ImageIO.read(new FileInputStream(imgPath));
 		int imageWidth = originalPic.getWidth();
 		int imageHeight = originalPic.getHeight();
@@ -56,11 +56,15 @@ public class PicUtil {
 		ColorConvertOp cco = new ColorConvertOp(ColorSpace
 				.getInstance(ColorSpace.CS_GRAY), null);
 		cco.filter(originalPic, newPic);
-		FileOutputStream output = new FileOutputStream(imgPath);
+		FileOutputStream output = new FileOutputStream(outputImgPath);
 		JPEGImageEncoder jpg = JPEGCodec.createJPEGEncoder(output);
 		jpg.encode(newPic);
 		ImageIO.write(newPic, "bmp", output);
 		output.close();
+		
+		FileOutputStream fos = new FileOutputStream(outputImgPath);  
+		ImageIO.write(newPic, "jpg", fos);  
+		
 		return newPic;
 	}
 	
@@ -71,7 +75,7 @@ public class PicUtil {
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
-	public final BufferedImage getDlurPicture(String imgPath) throws FileNotFoundException, IOException {
+	public static BufferedImage getDlurPicture(String imgPath, String outputImgPath) throws FileNotFoundException, IOException {
 		BufferedImage originalPic=ImageIO.read(new FileInputStream(imgPath));
 		int imageWidth = originalPic.getWidth();
 		int imageHeight = originalPic.getHeight();
@@ -91,6 +95,10 @@ public class PicUtil {
 		jpg.encode(newPic);
 		ImageIO.write(newPic, "bmp", output);
 		output.close();
+		
+		FileOutputStream fos = new FileOutputStream(outputImgPath);  
+		ImageIO.write(newPic, "jpg", fos);  
+		
 		return newPic;
 	}
 /**
@@ -100,7 +108,7 @@ public class PicUtil {
  * @throws FileNotFoundException
  * @throws IOException
  */
-	public final BufferedImage getSharperPicture(String imgPath) throws FileNotFoundException, IOException {
+	public static BufferedImage getSharperPicture(String imgPath, String outputImgPath) throws FileNotFoundException, IOException {
 		BufferedImage originalPic=ImageIO.read(new FileInputStream(imgPath));
 		int imageWidth = originalPic.getWidth();
 		int imageHeight = originalPic.getHeight();
@@ -113,11 +121,15 @@ public class PicUtil {
 		Kernel kernel = new Kernel(3, 3, data);
 		ConvolveOp co = new ConvolveOp(kernel, ConvolveOp.EDGE_NO_OP, null);
 		co.filter(originalPic, newPic);
-		FileOutputStream output = new FileOutputStream(imgPath);
+		FileOutputStream output = new FileOutputStream(outputImgPath);
 		JPEGImageEncoder jpg = JPEGCodec.createJPEGEncoder(output);
 		jpg.encode(newPic);
 		ImageIO.write(newPic, "bmp", output);
 		output.close();
+		
+		FileOutputStream fos = new FileOutputStream(outputImgPath);  
+		ImageIO.write(newPic, "jpg", fos);  
+		
 		return newPic;
 	}
    /**
@@ -128,7 +140,7 @@ public class PicUtil {
     * @throws FileNotFoundException
     * @throws IOException
     */
-	public final BufferedImage getPicEdge(String imgPath) throws FileNotFoundException, IOException {
+	public static BufferedImage getPicEdge(String imgPath, String outputImgPath) throws FileNotFoundException, IOException {
 		BufferedImage originalPic=ImageIO.read(new FileInputStream(imgPath));
 		int imageWidth = originalPic.getWidth();
 		int imageHeight = originalPic.getHeight();
@@ -143,24 +155,28 @@ public class PicUtil {
 		Kernel kernel = new Kernel(3, 3, elements);
 		ConvolveOp cop = new ConvolveOp(kernel, ConvolveOp.EDGE_NO_OP, null);
 		cop.filter(originalPic, newPic);
-		FileOutputStream output = new FileOutputStream(imgPath);
+		FileOutputStream output = new FileOutputStream(outputImgPath);
 		JPEGImageEncoder jpg = JPEGCodec.createJPEGEncoder(output);
 		jpg.encode(newPic);
 		ImageIO.write(newPic, "bmp", output);
 		output.close();
+		
+		FileOutputStream fos = new FileOutputStream(outputImgPath);  
+		ImageIO.write(newPic, "jpg", fos);  
+		
 		return newPic;
 	}
 	/**
 	 * 彩色图像转黑白
 	 * @param srcImageFile
 	 */
-	public final static void gray(String imgPath) {
+	public static void gray(String imgPath, String outputImgPath) {
         try {
             BufferedImage src = ImageIO.read(new File(imgPath));
             ColorSpace cs = ColorSpace.getInstance(ColorSpace.CS_GRAY);
             ColorConvertOp op = new ColorConvertOp(cs, null);
             src = op.filter(src, null);
-            ImageIO.write(src, "JPEG", new File(imgPath));
+            ImageIO.write(src, "JPEG", new File(outputImgPath));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -171,7 +187,7 @@ public class PicUtil {
      * @param text
      * @return
      */
-    public final static int getLength(String text) {
+    public static int getLength(String text) {
         int length = 0;
         for (int i = 0; i < text.length(); i++) {
             if (new String(text.charAt(i) + "").getBytes().length > 1) {
@@ -184,8 +200,8 @@ public class PicUtil {
     }
 
 	// ImageUtils.pressText("我是水印文字","e:/abc.jpg","e:/abc_pressText.jpg","宋体",Font.BOLD,Color.white,80, 0, 0, 0.5f);
-	public final static void pressText(String pressText,
-            String imgPath) {
+	public static void pressText(String pressText,
+            String imgPath, String outputImgPath) {
 		 String fontName="宋体";
 		 int fontStyle=Font.BOLD;
 		 Color color=Color.white;
@@ -210,14 +226,10 @@ public class PicUtil {
             g.drawString(pressText, (width - (getLength(pressText) * fontSize))
                     / 2 + x, (height - fontSize) / 2 + y);
             g.dispose();
-            ImageIO.write((BufferedImage) image, "JPEG", new File(imgPath));// 输出到文件流
+            ImageIO.write((BufferedImage) image, "JPEG", new File(outputImgPath));// 输出到文件流
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-	public static void main(String args[]){
-		PicUtil t= new PicUtil();
-		t.pressText("hah", "H://2.png");
-		
-	}
+	
 }

@@ -1,0 +1,76 @@
+@CHARSET "UTF-8";
+
+.navbar-custom {
+    background-color: transparent;
+}
+
+.navbar-custom li:hover {
+    background-color: rgba(127, 127, 127, .4);
+}
+
+.navbar-custom li:active {
+    background-color: rgba(127, 127, 127, .6);
+    color: rgba(127, 127, 127, .6);
+}
+
+.body-custom {
+    background-image: url(IMAGE/bg-blackdesk.jpg);
+    background-attachment: fixed;
+}
+
+.media img {
+    width: 100%;
+}
+
+.modal-content {
+	background-color: rgba(58, 58, 58, .8) !important;
+    
+}
+
+.carousel-inner img {
+    width: 100%;
+}
+
+.carousel-caption {
+    opacity:0.6;
+}
+
+.carousel-caption:hover {
+    opacity:1.0;
+}
+
+.blurglass {
+    filter:alpha(opacity=100); /* IE */  
+    text-decoration: blink;
+    //background:#ccc;
+    //border: 1px solid black;
+    //border-radius:5px;
+    border-width: medium;
+    border-color: rgba(127, 127, 127, .4);
+    //left:50%; 
+    //z-index:99; 
+    //text-align:center; 
+    //padding:20px;
+    background-color: rgba(127, 127, 127, .4);
+    //box-shadow: 5px 5px 5px #888888;
+}
+
+h3 {
+    color:rgb(255,255,255);
+}
+
+h4 {
+    color:rgb(255,255,255);
+}
+
+p {
+    color:rgb(255, 255, 255);
+}
+
+label {
+    color: rgb(255,255,255);
+}
+
+.help-block {
+    color: rgb(192, 192, 192);
+}
