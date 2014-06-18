@@ -65,21 +65,8 @@
             <li><a href="#">Link</a></li> -->
 
             <!-- trigger modal -->
-            <li><a data-toggle="modal" href="#myModal">关于我们</a></li>
+            <li><a data-toggle="modal" href="#aboutUs">关于我们</a></li>
 
-            <!-- dropdown -->
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li class="divider"></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
           </ul>
 
           <form class="navbar-form navbar-left" role="search">
@@ -94,10 +81,10 @@
             <li><a data-toggle="modal" href="#signUp">登录 <span class="glyphicon glyphicon-log-in"></span></a></li>
 	 		<% } else {%>
 	 		<li><a href="./photostream.jsp">图片流 <span class="glyphicon glyphicon-log-in"></span></a></li>
-	 		<% } %>
+	 		
             <!-- dropdown -->
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= (String) session.getAttribute("userEmail") %> <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="#">Action</a></li>
                 <li><a href="#">Another action</a></li>
@@ -106,6 +93,7 @@
                 <li><a href="#">Separated link</a></li>
               </ul>
             </li>
+	 		<% } %>
 
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -127,7 +115,7 @@
           <!-- Wrapper for slides -->
           <div class="carousel-inner">
             <div class="item">
-              <img src="IMAGE/bg-2014worldcup.jpg" alt="Oops ...">
+              <img class="carousel-img" src="IMAGE/bg-2014worldcup.jpg" alt="Oops ...">
               <div class="carousel-caption">
                 
                 <h1>Welcome to PhotoHub, powered by Bootstrap</h1>
@@ -170,7 +158,7 @@
           <div class="row">
             <div class="col-sm-9 col-md-6">
               <div class="thumbnail blurglass">
-                <img src="http://hd.wallpaperswide.com/thumbs/field_sunrise-t2.jpg" alt="...">
+                <img src="IMAGE/bg-prayerflags.jpg" alt="...">
                 <div class="caption">
                   <h3>We provide extremely fast channel</h3>
                   <p>Sync your photo and share with your every device.</p>
@@ -179,7 +167,7 @@
             </div>
             <div class="col-sm-9 col-md-6">
               <div class="thumbnail blurglass">
-                <img src="http://hd.wallpaperswide.com/thumbs/spring_mountain_landscape_2-t2.jpg" alt="...">
+                <img src="IMAGE/bg-pulpitrock.jpg" alt="...">
                 <div class="caption">
                   <h3>现在注册</h3>
                   <!-- sign up -->
@@ -187,19 +175,19 @@
                       <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">用户邮箱</label>
                         <div class="col-sm-10">
-                          <input type="email" class="form-control" name="signupEmail" placeholder="Email">
+                          <input type="email" class="form-control" name="signupEmail" placeholder="用户邮箱">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
                         <div class="col-sm-10">
-                          <input type="password" class="form-control" name="signupPassword" placeholder="Password">
+                          <input type="password" class="form-control" name="signupPassword" placeholder="密码">
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">密码确认</label>
                         <div class="col-sm-10">
-                          <input type="password" class="form-control" name="confirmPassword" placeholder="Password">
+                          <input type="password" class="form-control" name="confirmPassword" placeholder="密码确认">
                         </div>
                       </div>
                       <div class="form-group">
@@ -215,38 +203,70 @@
           </div>
         </div>
       </div>
-
-    <!-- model -->
-    <div class="modal fade" id="signUp">
-      <div class="modal-dialog">
-        <div class="modal-content">
-
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">用户登录</h4>
-          </div>
-          <div class="modal-body">
-            <form role="form" action="signin" method="post">
-              <div class="form-group">
-                <label for="exampleInputEmail1">用户邮箱</label>
-                <input type="email" class="form-control" name="signinEmail" placeholder="输入注册邮箱">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">密码</label>
-                <input type="password" class="form-control" name="signinPassword" placeholder="输入6-20位登录密码">
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="rememberPassword">记住密码
-                </label>
-              </div>
-              <button type="submit" class="btn btn-primary" onclick="signin()">确定</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-            </form>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+      
+      	<!-- model -->
+		<div class="modal fade" id="aboutUs">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title">软件工程第八组</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p><strong>王琦</strong><span> </span>（组长）</p>
+		        <p>学号：111220125</p>
+		        <p>邮箱：wangqi199204@gmail.com</p>
+		        <hr>
+		        <p><strong>孟占帅</strong></p>
+		        <p>学号：837468357@qq.com</p>
+		        <p>邮箱：</p>
+		        <hr>
+		        <p><strong>蒲阳</strong></p>
+		        <p>学号：1696531551@qq.com</p>
+		        <p>邮箱：</p>
+		        <hr>
+		        <p><strong>汤顺雷</strong></p>
+		        <p>学号：111220111</p>
+		        <p>邮箱：tangshunlei@gmail.com</p>
+		      </div>
+		      <div class="modal-footer">
+		        <p>2014年06月18日 南京大学计算机系</p>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		
+	    <!-- model -->
+	    <div class="modal fade" id="signUp">
+	      <div class="modal-dialog">
+	        <div class="modal-content">
+	
+	          <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">&times;</button>
+	            <h4 class="modal-title">用户登录</h4>
+	          </div>
+	          <div class="modal-body">
+	            <form role="form" action="SigninServlet" method="post">
+	              <div class="form-group">
+	                <label for="exampleInputEmail1">用户邮箱</label>
+	                <input type="email" class="form-control" name="signinEmail" placeholder="输入注册邮箱">
+	              </div>
+	              <div class="form-group">
+	                <label for="exampleInputPassword1">密码</label>
+	                <input type="password" class="form-control" name="signinPassword" placeholder="输入6-20位登录密码">
+	              </div>
+	              <div class="checkbox">
+	                <label>
+	                  <input type="checkbox" name="rememberPassword">记住密码
+	                </label>
+	              </div>
+	              <button type="submit" class="btn btn-primary" onclick="signin()">确定</button>
+	              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	            </form>
+	          </div>
+	        </div><!-- /.modal-content -->
+	      </div><!-- /.modal-dialog -->
+	    </div><!-- /.modal -->
 
     </div>
     

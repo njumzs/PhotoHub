@@ -21,7 +21,7 @@ import photohub.*;
 /**
  * Servlet implementation class Upload
  */
-@WebServlet("/upload")
+@WebServlet("/UploadServlet")
 public class UploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

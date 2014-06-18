@@ -81,19 +81,6 @@
             <!-- trigger modal -->
             <li><a data-toggle="modal" href="#aboutUs">关于我们</a></li>
 
-            <!-- dropdown -->
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li class="divider"></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
           </ul>
 
           <form class="navbar-form navbar-left" role="search">
@@ -155,7 +142,7 @@
 	        	  pinfo = photoIterator.previous();
 	        	  count ++;
 	        	  System.out.println("photo " + pinfo.photo);
-	        	  ArrayList<String> commentlist = Comment.commentlist(pinfo.photoID);
+	        	  ArrayList<CommentInfo> commentlist = Comment.commentlist(pinfo.photoID);
           %>
             <div class="media">
               <a class="pull-left" href="#">
@@ -167,17 +154,21 @@
                   <img src="<%= request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath() + "/IMAGE/" + pinfo.photo.substring(pinfo.photo.lastIndexOf("\\") + 1) %>" alt="Oops...">
                   <!-- http://hd.wallpaperswide.com/thumbs/field_sunrise-t2.jpg -->
                   <h3><%= pinfo.introduction %></h3>
+                  <br>
                   <%
-    	          ListIterator<String> commentIterator = commentlist.listIterator();
-                  String comment = null;
+    	          ListIterator<CommentInfo> commentIterator = commentlist.listIterator();
+                  CommentInfo comment = null;
 					while (commentIterator.hasNext()) {
 						comment = commentIterator.next();
 						%>
-		                  <p><%= comment %></p>
+		                  <p><strong><%= comment.userName %></strong>: <%= comment.commentMess %></p>
 				  <%
 					}
                   %>
-                  <p><a data-toggle="modal" href="#commentPhoto<%= count %>" class="btn btn-primary btn-xs" role="button">Button</a> <a href="#" class="btn btn-default btn-xs" role="button">Button</a></p>
+                  <p>
+                  	<a data-toggle="modal" href="#commentPhoto<%= count %>" class="btn btn-default btn-xs" role="button">评论</a>
+                  	<a data-toggle="modal" href="#editPhoto<%= count %>" class="btn btn-default btn-xs" role="button">美化</a>
+                  </p>
                 </div>
               </div>
             </div>
@@ -205,6 +196,47 @@
 		          </div><!-- /.modal-content -->
 		        </div><!-- /.modal-dialog -->
 		      </div><!-- /.modal -->
+
+              <!-- model -->
+		      <div class="modal fade" id="editPhoto<%= count %>">
+		        <div class="modal-dialog">
+		          <div class="modal-content">
+		            <div class="modal-header">
+		              <button type="button" class="close" data-dismiss="modal" aria-hidden="true" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">&times;</button>
+		              <h4 class="modal-title">图片美化</h4>
+		            </div>
+		            <div class="modal-body">
+		              <form role="form" method="post" action="comment">
+		              
+		                <div class="form-group">
+		              
+		                  <div class="input-group">
+						      <div class="input-group-btn">
+						        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">过滤器 <span class="caret"></span></button>
+						        <ul class="dropdown-menu">
+						          <li><a href="#">图片变暗</a></li>
+						          <li><a href="#">图片变灰</a></li>
+						          <li><a href="#">图片锐化</a></li>
+						          <li><a href="#">图像黑白化</a></li>
+						          <li><a href="#">水印文字</a></li>
+						        </ul>
+						      </div><!-- /btn-group -->
+						      <input type="text" class="form-control" name="inputText" placeholder="选取过滤器并输入参数">
+						      <input type="hidden" class="form-control" name="inputFilter">
+						    </div><!-- /input-group -->
+		              
+		                </div>
+		                <input type="hidden" name="inputUserId" value="<%= userid %>">
+		                <input type="hidden" name="inputPhotoId" value="<%= pinfo.photoID %>">
+		                <input type="hidden" name="inputPath" value="<%= "C:/Users/cc/Documents/GitHub/PhotoHub/WebContent/IMAGE/" + pinfo.photo.substring(pinfo.photo.lastIndexOf("\\") + 1) %>">
+		                <button type="submit" class="btn btn-default">确定</button>
+		                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		              </form>
+		            </div>
+		          </div><!-- /.modal-content -->
+		        </div><!-- /.modal-dialog -->
+		      </div><!-- /.modal -->
+
             <%
             	}
         	}
@@ -223,7 +255,7 @@
               <h4 class="modal-title">上传你的图片</h4>
             </div>
             <div class="modal-body">
-              <form role="form" encType="multipart/form-data" method="post" action="upload">
+              <form role="form" encType="multipart/form-data" method="post" action="UploadServlet">
                 <div class="form-group">
                   <label for="input">添加评论</label>
                   <input type="text" class="form-control" name="inputIntroduction" placeholder="给图片添加一个评论">
@@ -272,6 +304,38 @@
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
       
+      	<!-- model -->
+		<div class="modal fade" id="aboutUs">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title">软件工程第八组</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p><strong>王琦</strong><span> </span>（组长）</p>
+		        <p>学号：111220125</p>
+		        <p>邮箱：wangqi199204@gmail.com</p>
+		        <hr>
+		        <p><strong>孟占帅</strong></p>
+		        <p>学号：837468357@qq.com</p>
+		        <p>邮箱：</p>
+		        <hr>
+		        <p><strong>蒲阳</strong></p>
+		        <p>学号：1696531551@qq.com</p>
+		        <p>邮箱：</p>
+		        <hr>
+		        <p><strong>汤顺雷</strong></p>
+		        <p>学号：111220111</p>
+		        <p>邮箱：tangshunlei@gmail.com</p>
+		      </div>
+		      <div class="modal-footer">
+		        <p>2014年06月18日 南京大学计算机系</p>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
     </div>
     
     <!-- Bootstrap core JavaScript
@@ -283,6 +347,9 @@
     <!--  http://getbootstrap.com/dist/js/bootstrap.min.js -->
     <script src="./LIB/docs.min.js"></script>
     <!--  http://getbootstrap.com/assets/js/docs.min.js -->
+    
+    <!-- Custom JacaScript -->
+    <script src="custom.js"></script>
 
   </body>
 </html>

@@ -14,7 +14,7 @@ import photohub.TableUser;
 /**
  * Servlet implementation class signin
  */
-@WebServlet("/signin")
+@WebServlet("/SigninServlet")
 public class SigninServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
